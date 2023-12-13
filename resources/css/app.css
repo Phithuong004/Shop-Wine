@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sidebar-hidden {
+    @apply transform -translate-x-full transition-transform duration-500 ease-in-out;
+}
+
+.sidebar-visible {
+    @apply transform translate-x-0 transition-transform duration-500 ease-in-out;
+}
+
+@media (max-width: 1024px) {
+    #overlay {
+        width: 100%;
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 1024px) {
+    #navbar {
+        display: none;
+    }
+}
+
+.animated-image {
+    width: 100%;
+    max-width: 800px; /* Adjust the max-width as needed */
+    animation: wave 2s infinite linear alternate;
+    transform-origin: center;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    background: radial-gradient(ellipse at center, #fffeea 0%, #fffeea 35%, #b7e8eb 100%);
+    overflow-x: hidden ;
+}
+
+.ocean {
+    height: 5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #015871;
+}
+
+.wave {
+    background: url(https://cdn.kcak11.com/codepen_assets/wave_animation/wave.svg) repeat-x;
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -1600px;
+    }
+}
+@keyframes swell {
+    0%,
+    100% {
+        transform: translate3d(0, -25px, 0);
+    }
+    50% {
+        transform: translate3d(0, 5px, 0);
+    }
+}
+.endWave{
+    display:none;
+}

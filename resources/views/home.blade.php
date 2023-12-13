@@ -9,6 +9,6 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    @include('navigation')
+@include('demo')
 </body>
 </html>
