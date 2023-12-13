@@ -21,6 +21,16 @@
     #navbar {
         display: none;
     }
+    #start {
+        display: none;
+    }
+    #end {
+        display: none;
+    }
+}
+
+#sidebar {
+    z-index: 1001;
 }
 
 .animated-image {
@@ -96,4 +106,21 @@ body {
 }
 .endWave{
     display:none;
+}
+
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
