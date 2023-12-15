@@ -40,7 +40,7 @@
             <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
         </div>
         <div class="w-full py-6 z-20">
-            <div class="flex">
+            <div class="flex justify-center">
                 <h1 class="text-2xl font-semibold">
                     Sign Up for Exclusive Access
                 </h1>
@@ -56,22 +56,45 @@
             <p class="text-gray-100">
                 or use email your account
             </p>
-            <form action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+            <form action="/test" method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                @csrf
+                <div class="pb-2 pt-4">
+                    <input type="text" name="name" id="name" placeholder="Username"
+                           class="block w-full p-4 text-lg rounded bg-black transition-all duration-300">
+                    @if($errors->has('name'))
+                        <span class="text-red-500">{{ $errors->first('name') }}</span>
+                    @endif
+                </div>
                 <div class="pb-2 pt-4">
                     <input type="email" name="email" id="email" placeholder="Email"
-                           class="block w-full p-4 text-lg rounded-sm bg-black">
+                           class="block w-full p-4 text-lg rounded bg-black transition-all duration-300">
+                    @if($errors->has('email'))
+                        <span class="text-red-500">{{ $errors->first('email') }}</span>
+                    @endif
                 </div>
                 <div class="pb-2 pt-4">
-                    <input class="block w-full p-4 text-lg rounded-sm bg-black" type="password" name="password"
+                    <input class="block w-full p-4 text-lg rounded bg-black transition-all duration-300" type="password"
+                           name="password"
                            id="password" placeholder="Password">
+                    @if($errors->has('password'))
+                        <span class="text-red-500">{{ $errors->first('password') }}</span>
+                    @endif
                 </div>
-                <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
+                <div class="pb-2 pt-4">
+                    <input class="block w-full p-4 text-lg rounded bg-black transition-all duration-300" type="password"
+                           name="confirm_password"
+                           id="password" placeholder="Confirm Password">
+                    @if($errors->has('confirm_password'))
+                        <span class="text-red-500">{{ $errors->first('confirm_password') }}</span>
+                    @endif
+                </div>
+                <div class="text-right text-gray-400 hover:underline hover:text-gray-100 transition-all duration-300">
                     <a href="#">Forgot your password?</a>
                 </div>
                 <div class="px-4 pb-2 pt-4">
                     <button
-                        class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">
-                        sign in
+                        class="uppercase block w-full p-4 text-lg rounded-full bg-blue-500 hover:bg-indigo-500 focus:outline-none transition-all duration-300">
+                        created account
                     </button>
                 </div>
 
@@ -95,9 +118,60 @@
                         </svg>
                     </a>
                 </div>
+                @if(Session::has('message'))
+                    <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title"
+                         role="dialog" aria-modal="true">
+                        <div
+                            class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                                 aria-hidden="true"></div>
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                  aria-hidden="true">&#8203;</span>
+                            <div
+                                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                    <div class="sm:flex sm:items-start">
+                                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                                Success
+                                            </h3>
+                                            <div class="mt-2">
+                                                <p class="text-sm text-gray-500">
+                                                    {{ Session::get('message') }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                    <button id="closeModal" type="button"
+                                            class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </form>
         </div>
     </div>
 </section>
+<script>
+   window.onload = function () {
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+
+    if (modal.style.display === 'none') {
+        modal.classList.remove('modal-closed');
+        modal.classList.add('modal-open');
+    }
+
+    closeModal.addEventListener('click', function () {
+        modal.classList.remove('modal-open');
+        modal.classList.add('modal-closed');
+    });
+}
+</script>
 </body>
 </html>

@@ -18,9 +18,9 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 1024px) {
-    #navbar {
-        display: none;
-    }
+    /*#navbar {*/
+    /*    display: none;*/
+    /*}*/
     #start {
         display: none;
     }
@@ -58,7 +58,6 @@ body {
 }
 
 body {
-    background: radial-gradient(ellipse at center, #fffeea 0%, #fffeea 35%, #b7e8eb 100%);
     overflow-x: hidden ;
 }
 
@@ -123,4 +122,16 @@ body {
     100% {
         transform: translateY(0);
     }
+}
+
+.modal-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s linear;
+}
+
+.modal-closed {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s 0.5s, opacity 0.25s linear;
 }
