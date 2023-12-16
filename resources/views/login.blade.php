@@ -107,7 +107,7 @@
             @endif
             </div>
             <div class="text-right text-gray-400 hover:underline hover:text-blue-500 transition-all duration-300 mb-3">
-                <a href="#">Forgot your password?</a>
+                <a href="{{route('forget.password')}}">Forgot your password?</a>
             </div>
             <button type="submit">Login</button>
             @if(Session::has('message'))

@@ -130,6 +130,5 @@
         <p>&copy; 2023 LuxuryWines. All Rights Reserved.</p>
     </div>
 </footer>
-<script src="./node_modules/preline/dist/preline.js"></script>
 </body>
 </html>

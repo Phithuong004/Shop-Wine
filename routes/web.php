@@ -20,13 +20,13 @@ Route::get('/', function () {
 
 Route::get('/signup', function () {
    return view('register');
-});
+})->name('signup');
 
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::get('/login', function () {
    return view('/login');
-});
+})->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
 
