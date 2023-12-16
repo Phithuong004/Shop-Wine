@@ -10,7 +10,7 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
         $input = $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required', 'min:8', 'max:30', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'confirm_password' => 'required'
