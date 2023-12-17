@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury Wine Shop</title>
-    <link rel="stylesheet" href="path/to/your/css/file.css"> <!-- Replace with the path to your CSS file -->
+    <link rel="stylesheet" href="path/to/your/css/file.css">
 </head>
 
 <style>
@@ -15,7 +15,9 @@ body {
 }
 
 .carousel {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 100%);
+    grid-gap: 0;
     overflow: hidden;
     width: 100%;
     height: 100vh;
@@ -28,19 +30,18 @@ body {
 }
 
 .carousel-item {
-    min-width: 100%;
+    width: 100%;
     height: 100%;
 }
 
 .carousel-button {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
     font-size: 24px;
     color: white;
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 .prev {
@@ -82,20 +83,21 @@ body {
     <!-- Hero Section -->
     <section class="py-20 bg-cover bg-center h-screen flex items-center justify-center z-50">
         <!-- Carousel -->
-        <div class="carousel w-full sm:h-80 md:h-96 lg:h-screen relative overflow-hidden">
-            <button class="carousel-button prev" onclick="prevSlide()">❮</button>
+        <div class="carousel relative overflow-hidden">
+           
             <div class="carousel-inner flex">
                 <!-- Item 1 -->
-                <div class="carousel-item w-full">
+                <div class="carousel-item">
                     <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/403402162_1780640389099953_1472303949310716204_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=y1PGr8jH7UoAX-6euaP&_nc_ht=scontent.fsgn5-5.fna&oh=03_AdSdfdPA4Bw-K9DaYeG0vfikxxbyMu3Y-lrmR4tnStFs6g&oe=65A53C6E"
                         alt="Wine 1" class="w-full h-full object-cover object-center">
                 </div>
                 <!-- Item 2 -->
-                <div class="carousel-item w-full">
+                <div class="carousel-item">
                     <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.15752-9/385559678_6895473820546134_8535414984234801751_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=QzVm2p0LergAX8T5nw5&_nc_ht=scontent.fsgn5-15.fna&oh=03_AdTLt5rFrBZYwNUbSBofmwd4MBkx7df-zWPXFxpnEhDrYA&oe=65A545C0"
                         alt="Wine 2" class="w-full h-full object-cover object-center">
                 </div>
             </div>
+            <button class="carousel-button prev" onclick="prevSlide()">❮</button>
             <button class="carousel-button next" onclick="nextSlide()">❯</button>
             <div class="carousel-indicators">
                 <div class="carousel-indicator" onclick="goToSlide(0)"></div>
@@ -136,46 +138,45 @@ body {
         </div>
     </footer>
 
-    
+    <!-- JavaScript for carousel -->
+    <script>
+    const carouselInner = document.querySelector('.carousel-inner');
+    const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        const newTransformValue = `translateX(${-index * 100}%)`;
+        carouselInner.style.transform = newTransformValue;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % 2;
+        updateIndicators();
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex + 1) % 2;
+        updateIndicators();
+        showSlide(currentIndex);
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateIndicators();
+        showSlide(currentIndex);
+    }
+
+    function updateIndicators() {
+        carouselIndicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+    </script>
 </body>
 
 </html>
-<!-- JavaScript for carousel -->
-<script>
-        const carouselInner = document.querySelector('.carousel-inner');
-        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
-        let currentIndex = 0;
-
-        function showSlide(index) {
-            const newTransformValue = -index * 100 + '%';
-            carouselInner.style.transform = 'translateX(' + newTransformValue + ')';
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % 2;
-            updateIndicators();
-            showSlide(currentIndex);
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + 2) % 2;
-            updateIndicators();
-            showSlide(currentIndex === -1 ? 1 : currentIndex);
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateIndicators();
-            showSlide(currentIndex);
-        }
-
-        function updateIndicators() {
-            carouselIndicators.forEach((indicator, index) => {
-                if (index === currentIndex) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-    </script>
