@@ -84,7 +84,7 @@ body {
     <section class="py-20 bg-cover bg-center h-screen flex items-center justify-center z-50">
         <!-- Carousel -->
         <div class="carousel relative overflow-hidden">
-           
+
             <div class="carousel-inner flex">
                 <!-- Item 1 -->
                 <div class="carousel-item">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\WineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,10 @@ Route::post('/forgot-password', [ForgotController::class, 'forgotPassword']);
 
 Route::get('/reset-password/{token}', [ForgotController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('/reset-password', [ForgotController::class, 'resetPassword'])->name('reset.password.post');
+
+Route::get('/product', [AuthController::class, 'index']);
+Route::get('/cart', [WineController::class, 'wineCart'])->name('cart');
+Route::get('/add-to-cart/{id}', [WineController::class, 'addToCart'])->name('add.to.cart');
+Route::post('/update-cart', [WineController::class, 'updateCart'])->name('update.cart');
+Route::get('/delete-product/{id}', [WineController::class, 'deleteProduct'])->name('delete.product');
+Route::get('/remove-from-cart/{id}', [WineController::class, 'removeFromCart'])->name('remove.from.cart');
