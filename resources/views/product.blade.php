@@ -15,11 +15,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach ($wines as $wine)
                 <div
-                        class="bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer transition-all duration-300 group relative">
+                    class="bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer transition-all duration-300 group relative">
                     <img src="{{$wine->picture}}" alt="Wine" style="width: 7rem"
                          class="object-cover mx-auto w-full h-72 transform hover:scale-105">
                     <div
-                            class="bg-gray-50 p-6 absolute bottom-0 shadow-lg transform transition-transform duration-300 group-hover:translate-y-0 translate-y-full">
+                        class="bg-gray-50 p-6 absolute bottom-0 shadow-lg transform transition-transform duration-300 group-hover:translate-y-0 translate-y-full">
                         <h3 class="text-md font-bold mb-2">{{$wine->name}}</h3>
                         <p class="text-gray-600">{{$wine->description}}</p>
                         <div class="mt-4 flex justify-between items-center">
@@ -40,13 +40,13 @@
                      aria-labelledby="modal-title"
                      role="dialog" aria-modal="true">
                     <div
-                            class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
                              aria-hidden="true"></div>
                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
                               aria-hidden="true">&#8203;</span>
                         <div
-                                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start">
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -84,21 +84,22 @@
     </div>
 </section>
 <script>
-window.onload = function () {
-    const modal = document.getElementById('modal');
-    const closeModal = document.getElementById('closeModal');
+    window.onload = function () {
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
 
-    if (modal && closeModal) {
-        if (modal.style.display === 'none') {
-            modal.classList.remove('modal-closed');
-            modal.classList.add('modal-open');
+        if (modal && closeModal) {
+            if (modal.style.display === 'none') {
+                modal.classList.remove('modal-closed');
+                modal.classList.add('modal-open');
+            }
+
+            closeModal.addEventListener('click', function () {
+                modal.classList.remove('modal-open');
+                modal.classList.add('modal-closed');
+            });
         }
-
-        closeModal.addEventListener('click', function () {
-            modal.classList.remove('modal-open');
-            modal.classList.add('modal-closed');
-        });
     }
-}</script>
+</script>
 </body>
 </html>

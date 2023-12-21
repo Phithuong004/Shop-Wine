@@ -8,12 +8,11 @@ use Illuminate\Http\Request;
 class WineController extends Controller
 {
     public function index() {
-        $wines = Wine::all();
-        return view('product', compact('wines'));
+        $wines = Wine::paginate(8);
+        return view('home', compact('wines'));
     }
 
     public function wineCart() {
-
         return view('cart');
     }
 
