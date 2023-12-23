@@ -19,6 +19,9 @@
         </ul>
     </div>
     <div class="navbar navbar-end">
+        <button class="btn btn-ghost" id="searchButton">
+            <i class="fa fa-search text-2xl"></i>
+        </button>
         @if(Auth::check())
             <div class="dropdown dropdown-end">
                 <a href="{{route('cart')}}" tabindex="0" role="button" class="btn btn-ghost btn-circle text-white">
@@ -28,7 +31,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
-                        <span class="badge badge-sm indicator-item">8</span>
+                        <span class="badge badge-sm indicator-item"></span>
                     </div>
                 </a>
                 <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
@@ -101,7 +104,7 @@
     <div class="navbar-center hidden lg:flex text-xl">
         <ul class="menu menu-horizontal px-1 text-white text-xl">
             <li class="hover:text-[#b5a46d] transition-all duration-300">
-                <a>Home</a>
+                <a href="{{route('home')}}">Home</a>
             </li>
             <li class="hover:text-[#b5a46d] transition-all duration-300">
                 <a href="">Our Story</a>
@@ -118,8 +121,11 @@
         </ul>
     </div>
     <div class="navbar-end lg:hidden text-white">
-        <div class="dropdown float-right" id="sidebarButton">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <div class="dropdown float-right flex" id="">
+            <button class="btn btn-ghost" id="searchButton1">
+                <i class="fa fa-search text-lg"></i>
+            </button>
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden" id="sidebarButton">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
@@ -157,7 +163,46 @@
     <div id="overlay"
          class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-500 ease-in-out"></div>
 </aside>
+<section class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-all w-full" id="searchBar" style="transform: translateY(100%);">
+    <div class="bg-transparent p-4 rounded w-1/2">
+        <button class="float-right mb-20" onclick="toggleSearchBar()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-10 w-10 text-white hover:text-red-500 transition-all duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+                <form action="{{route('search')}}">
+                    @csrf
+                    <input type="text" name="query" id="search" placeholder="Search..." class="border focus:outline-none focus:ring focus:ring-indigo-500 rounded-full py-2 px-3 w-full">
+                    <button type="submit" class="float-right mt-3 rounded-full bg-[#b5a46d] transition-all duration-300 hover:bg-slate-400 p-3 hover:text-white">Search</button>
+                </form>
+    </div>
+</section>
+<section class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-all w-full" id="searchBar" style="transform: translateY(100%);">
+    <div class="bg-transparent p-4 rounded w-1/2">
+        <button class="float-right mb-20" onclick="toggleSearchBar1()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-10 w-10 text-white hover:text-red-500 transition-all duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+                <form action="{{route('search')}}">
+                    @csrf
+                    <input type="text" name="query" id="search" placeholder="Search..." class="border focus:outline-none focus:ring focus:ring-indigo-500 rounded-full py-2 px-3 w-full">
+                    <button type="submit" class="float-right mt-3 rounded-full bg-[#b5a46d] transition-all duration-300 hover:bg-slate-400 p-3 hover:text-white">Search</button>
+                </form>
+    </div>
+</section>
 <script>
+    const searchButton = document.getElementById('searchButton');
+    const searchBar = document.getElementById('searchBar');
+
+    function toggleSearchBar() {
+        if (searchBar.style.transform === "translateY(100%)") {
+            searchBar.style.transform = "translateY(0)";
+        } else {
+            searchBar.style.transform = "translateY(100%)";
+        }
+    }
+    searchButton.addEventListener('click', toggleSearchBar);
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const sidebarButton = document.getElementById('sidebarButton');

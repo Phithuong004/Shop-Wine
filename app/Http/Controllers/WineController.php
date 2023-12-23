@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wine;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class WineController extends Controller
@@ -17,22 +19,27 @@ class WineController extends Controller
     }
 
     public function addToCart($id) {
-        $wine = Wine::findOrfail($id);
-        $cart = session()->get('cart', []);
-
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+        if(Auth::check()) {
+            $wine = Wine::findOrfail($id);
+            $cart = session()->get('cart', []);
+    
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity']++;
+            }else {
+                $cart[$id] = [
+                    'name' => $wine->name,
+                    'quantity' => 1,
+                    'price' => $wine->price,
+                    'picture' => $wine->picture,
+                ];
+            }
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Wine added to cart successfully!');
         }else {
-            $cart[$id] = [
-                'name' => $wine->name,
-                'quantity' => 1,
-                'price' => $wine->price,
-                'picture' => $wine->picture,
-            ];
+            return redirect()->back()->with('error', 'Please login to add wine to cart!');
         }
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Wine added to cart successfully!');
     }
+
 
     public function updateCart(Request $request) {
         $cart = session()->get('cart');
@@ -53,4 +60,15 @@ class WineController extends Controller
     session()->put('cart', $cart);
     return redirect()->back()->with('success', 'Wine removed from cart successfully!');
 }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $wines = Wine::where('name', 'like', "%{$query}%")->get();
+        $wines = Wine::where('country', 'like', "%{$query}%")->get();
+
+        return view('search-results', [
+            'wines' => $wines,
+            'query' => $query
+        ]);
+    }
 }

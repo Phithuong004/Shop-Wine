@@ -69,6 +69,6 @@ class ForgotController extends Controller
         $user->update(['password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return redirect('/login')->with('success', 'Your password has been changed!');
+        return redirect('/success-form')->with('success', 'Your password has been changed!');
     }
 }

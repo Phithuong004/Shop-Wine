@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [WineController::class, 'index']);
+Route::get('/', [WineController::class, 'index', 'showCart'])->name('home');
 
 Route::get('/signup', function () {
    return view('register');
@@ -46,3 +46,8 @@ Route::get('/add-to-cart/{id}', [WineController::class, 'addToCart'])->name('add
 Route::post('/update-cart', [WineController::class, 'updateCart'])->name('update.cart');
 Route::get('/delete-product/{id}', [WineController::class, 'deleteProduct'])->name('delete.product');
 Route::get('/remove-from-cart/{id}', [WineController::class, 'removeFromCart'])->name('remove.from.cart');
+Route::get('success-form', function () {
+   return view('success-form');
+})->name('success-form');
+
+Route::get('/search', [WineController::class, 'search'])->name('search');
