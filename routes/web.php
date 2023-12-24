@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [WineController::class, 'index', 'showCart'])->name('home');
 
+
+
 Route::get('/signup', function () {
    return view('register');
 })->name('signup');
@@ -26,6 +28,8 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::get('/login', function () {
    return view('/login');
 })->name('login');
+
+Route::get('/product-details/{id}', [WineController::class, 'showProductDetails'])->name('product.details');
 
 Route::post('/login', [AuthController::class, 'login']);
 

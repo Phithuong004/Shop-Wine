@@ -354,25 +354,26 @@
         <h2 class="text-4xl font-bold mb-10 text-center">Featured Wines</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach ($wines as $wine)
-                <div
-                    class="bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer transition-all duration-300 group relative">
+                <div class="bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer transition-all duration-300 group relative" >
+                    <a href="{{ route('product.details', $wine->id) }}">
                     <img src="{{$wine->picture}}" alt="Wine" style="width: 5em"
                          class="object-cover mx-auto w-full h-72 transform hover:scale-105">
-                    <div
-                        class="bg-gray-50 p-6 absolute bottom-0 shadow-lg transform transition-transform duration-300 group-hover:translate-y-0 translate-y-full w-full">
-                        <h3 class="text-md font-bold mb-2">{{$wine->name}}</h3>
-                        <p class="text-gray-600">{{$wine->description}}</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-gray-800 font-bold">${{$wine->price}}</span>
-                            <form action="{{route('add.to.cart', $wine->id)}}" method="post">
-                                @csrf
-                                <a href="{{route('add.to.cart', $wine->id)}}"
-                                   class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition duration-300">
-                                    Add to Cart
-                                </a>
-                            </form>
+                    
+                        <div class="bg-gray-50 p-6 absolute bottom-0 shadow-lg transform transition-transform duration-300 group-hover:translate-y-0 translate-y-full w-full">
+                            <h3 class="text-md font-bold mb-2">{{$wine->name}}</h3>
+                            <p class="text-gray-600">{{$wine->description}}</p>
+                            <div class="mt-4 flex justify-between items-center">
+                                <span class="text-gray-800 font-bold">${{$wine->price}}</span>
+                                <form action="{{route('add.to.cart', $wine->id)}}" method="post">
+                                    @csrf
+                                    <a href="{{route('add.to.cart', $wine->id)}}"
+                                       class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition duration-300">
+                                        Add to Cart
+                                    </a>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
             @if(Session::has('success'))
