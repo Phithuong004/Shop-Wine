@@ -40,7 +40,6 @@ Route::post('/forgot-password', [ForgotController::class, 'forgotPassword']);
 Route::get('/reset-password/{token}', [ForgotController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('/reset-password', [ForgotController::class, 'resetPassword'])->name('reset.password.post');
 
-//Route::get('/product', [AuthController::class, 'index']);
 Route::get('/cart', [WineController::class, 'wineCart'])->name('cart');
 Route::get('/add-to-cart/{id}', [WineController::class, 'addToCart'])->name('add.to.cart');
 Route::post('/update-cart', [WineController::class, 'updateCart'])->name('update.cart');
@@ -51,3 +50,5 @@ Route::get('success-form', function () {
 })->name('success-form');
 
 Route::get('/search', [WineController::class, 'search'])->name('search');
+
+Route::get('/products/{id}', [WineController::class, 'detailsProduct'])->name('details');

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
 .sidebar-hidden {
     @apply transform -translate-x-full transition-transform duration-500 ease-in-out;
 }
@@ -253,7 +257,7 @@
 .contact-item {
     position: absolute;
     top: 20%;
-    
+
 }
 .email-contact input {
     color: rgb(0, 0, 0);
@@ -264,7 +268,7 @@
     width: 372px;
     height: 50px;
     text-align: left;
-   
+
 }
 .btn-contact {
     color: rgb(0, 0, 0);
@@ -303,4 +307,8 @@
         margin-left: 0;
         margin-bottom: 10px;
     }
+}
+
+#caption {
+    z-index: 1000;
 }

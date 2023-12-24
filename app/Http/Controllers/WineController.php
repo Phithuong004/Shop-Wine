@@ -71,4 +71,9 @@ class WineController extends Controller
             'query' => $query
         ]);
     }
+
+    public function detailsProduct($id) {
+        $wine = Wine::findOrfail($id);
+        return view('details', compact('wine'));
+    }
 }

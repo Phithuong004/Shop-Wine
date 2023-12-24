@@ -363,7 +363,18 @@
                         <h3 class="text-md font-bold mb-2">{{$wine->name}}</h3>
                         <p class="text-gray-600">{{$wine->description}}</p>
                         <div class="mt-4 flex justify-between items-center">
-                            <span class="text-gray-800 font-bold">${{$wine->price}}</span>
+                            {{-- <span class="text-gray-800 font-bold">${{$wine->price}}</span> --}}
+                            <form action="{{route('details', $wine->id)}}">
+                                @csrf
+                                <a href="{{route('details', $wine->id)}}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6 mr-2"
+                                         fill="none"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7"></path>
+                                    </svg> 
+                                </a>
+                            </form>
                             <form action="{{route('add.to.cart', $wine->id)}}" method="post">
                                 @csrf
                                 <a href="{{route('add.to.cart', $wine->id)}}"
@@ -464,9 +475,104 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-black text-white py-8">
-    <div class="container mx-auto text-center">
-        <p>&copy; 2023 LuxuryWines. All Rights Reserved.</p>
+<footer class="footer-1 py-8 sm:py-12 font-mono" style="margin-top: 1000px;" id="footer_main">
+    <div class="container mx-auto px-4">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="text-xl font-bold mb-6">About Us</h5>
+                <ul class="list-none footer-links">
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent ">The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Read More</a>
+                    </li>
+                
+                </ul>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="text-xl font-bold mb-6">Categories</h5>
+                <ul class="list-none footer-links">
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Cheese</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Event
+                            </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Sommerliers
+                            </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Tasting
+                            </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="text-xl font-bold mb-6">About</h5>
+                <ul class="list-none footer-links">
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Team</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Locations</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Privacy</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Terms</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="text-xl font-bold mb-6">Conntact Us</h5>
+                <ul class="list-none footer-links">
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent">
+123 6th St. Melbourne, FL 32904</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent">+659874123, +659874124</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#"
+                            class="border-b border-solid border-transparent">yourname@email.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
+                <h5 class="text-xl font-bold mb-6 sm:text-center xl:text-left">Stay connected</h5>
+                <div class="flex sm:justify-center xl:justify-start">
+                    <a href=""
+                        class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white hover:bg-blue-600 hover:border-blue-600">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href=""
+                        class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-blue-400 hover:border-blue-400">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href=""
+                        class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600">
+                        <i class="fab fa-google-plus-g"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 
