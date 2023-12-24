@@ -72,8 +72,24 @@ class WineController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function detailsProduct($id) {
         $wine = Wine::findOrfail($id);
         return view('details', compact('wine'));
     }
 }
+=======
+
+
+    public function showProductDetails($id)
+{
+    $wine = Wine::find($id);
+
+    if ($wine) {
+        return view('product_details', compact('wine'));
+    } else {
+        // Handle the case where no wine with the given ID was found
+    }
+}
+}
+>>>>>>> origin
