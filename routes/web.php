@@ -55,4 +55,9 @@ Route::get('success-form', function () {
 
 Route::get('/search', [WineController::class, 'search'])->name('search');
 
-Route::get('/products/{id}', [WineController::class, 'detailsProduct'])->name('details');
+Route::get('/products/{id}', [WineController::class, 'detailsProduct',])->name('details');
+Route::get('/test', [WineController::class, 'countries'])->name('test');
+Route::get('/country/{country}', [App\Http\Controllers\WineController::class, 'showByCountry'])->name('country.show');
+Route::get('/checkout', [WineController::class, 'showCheckout'])->name('checkout');
+Route::post('/checkout', [WineController::class, 'handleCheckout'])->name('checkout.handle');
+Route::get('order/success/{id}', [WineController::class, 'orderSuccess'])->name('order.success');

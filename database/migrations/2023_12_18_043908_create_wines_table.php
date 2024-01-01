@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('wines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('year');
-            $table->string('grapes');
-            $table->string('country');
-            $table->string('region');
-            $table->text('description');
-            $table->string('picture');
+            $table->string('name')->default(0);
+            $table->string('year')->default(0);
+            $table->string('grapes')->default(0);
+            $table->string('country')->default(0);
+            $table->string('region')->default(0);
+            $table->string('description')->default(0);
+            $table->string('picture')->default(0);
             $table->decimal('price', 8, 2);
             $table->timestamps();
         });
@@ -30,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wines');
+        Schema::table('wines', function (Blueprint $table) {
+            $table->dropForeign(['id']);
+        });
     }
 };
