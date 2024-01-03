@@ -106,36 +106,21 @@ class WineController extends Controller
     public function handleCheckout(Request $request)
     {
         $cart = session()->get('cart', []);
-        $input = $request->validate([
-            'email' => 'required|email|unique:users',
-            'card-holder' => 'required',
-            'card-no' => 'required',
-            'credit-expiry' => 'required',
-            'credit-cvv' => 'required',
-            'billing-address' => 'required',
-        ],
-            [
-                'email.required' => 'Email is required',
-                'email.email' => 'Email is invalid',
-                'email.unique' => 'Email already exists',
-                'card-holder.required' => 'Card holder name is required',
-                'card-no.required' => 'Card number is required',
-                'credit-expiry.required' => 'Credit expiry is required',
-                'credit-cvv.required' => 'Credit cvv is required',
-                'billing-address.required' => 'Billing address is required',
-            ]
-    );
 
         $total = 0;
         foreach ($cart as $id => $details) {
             $total += $details['price'] * $details['quantity'];
+
+            // Check if the wine exists in the wines table
+            $wine = Wine::find($id);
+            if (!$wine) {
+                return redirect()->back()->with('error', 'Wine not found in the database');
+            }
         }
 
         $order = new Order();
         $order->user_id = Auth::id();
         $order->total = $total;
-        $order->name = $details['name'];
-        $order->quantity = $details['quantity'];
         $order->save();
 
         foreach ($cart as $id => $details) {
@@ -152,7 +137,8 @@ class WineController extends Controller
         return redirect()->route('order.success', $order->id);
     }
 
-    public function orderSuccess () {
+    public function orderSuccess()
+    {
         return view('order.success');
     }
 
@@ -165,5 +151,18 @@ class WineController extends Controller
         }
 
         return view('checkout', ['wine' => $wine]);
+    }
+
+    public function getCartDetails () {
+        $cart = session()->get('cart', []);
+        $totalPrice = 0;
+        $totalItems = 0;
+
+        foreach ($cart as $id => $details) {
+            $totalPrice += $details['price'] * $details['quantity'];
+            $totalItems += $details['quantity'];
+        }
+
+        return ['totalPrice' => $totalPrice, 'totalItems' => $totalItems];
     }
 }

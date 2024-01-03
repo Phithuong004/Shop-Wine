@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('wines', function (Blueprint $table) {
             $table->id();
+//            $table->unsignedBigInteger('user_id')->default(0);
             $table->string('name')->default(0);
             $table->string('year')->default(0);
             $table->string('grapes')->default(0);
@@ -22,6 +23,8 @@ return new class extends Migration
             $table->string('picture')->default(0);
             $table->decimal('price', 8, 2);
             $table->timestamps();
+
+//            $table->foreign('id')->references('id')->on('users');
         });
     }
 

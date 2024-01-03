@@ -74,7 +74,7 @@
     }
 </style>
 
-<body class="bg-gray-100 font-['Laila']">
+<body class="bg-gray-100 font-['Laila']" style="overflow-x: hidden;">
 <!-- Navigation -->
 <nav>
     @include('navigation')
@@ -88,7 +88,7 @@
         <div class="carousel-inner flex">
             <!-- Item 1 -->
 
-            <div class="carousel-item">
+            <div class="carousel-item ">
                 <img
                     src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/403402162_1780640389099953_1472303949310716204_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=y1PGr8jH7UoAX-6euaP&_nc_ht=scontent.fsgn5-5.fna&oh=03_AdSdfdPA4Bw-K9DaYeG0vfikxxbyMu3Y-lrmR4tnStFs6g&oe=65A53C6E"
                     alt="Wine 1" class="w-full h-full object-cover object-center">
@@ -237,8 +237,7 @@
             </div>
             <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
         </div>
-        <div class="font-mono">
-            <h3 class="text-2xl font-bold pt-2">Famous Wine</h3>
+        <div class="font-['laila']">
             <h2 class="text-xl font-medium pt-8">Ancient Wine Areas In The ChiantiClassico Region</h2>
             <p class="pt-5 pb-8">It is a long established fact that a reader will be distracted by the readable
                 content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
@@ -254,7 +253,7 @@
     </div>
 </section>
 <!-- story section -->
-<section class="py-16 bg-white container mx-auto w-full">
+<section class="py-16 bg-white container mx-auto w-full font-['laila']">
     <div class="container mx-auto px-4">
         <h2 class="font-mono text-4xl text-center font-semibold">Our History</h2>
         <img class="mx-auto rounded-lg md:w-3/4"
@@ -358,7 +357,7 @@
 </section>
 
 <!-- Product Section -->
-<section class="py-16 bg-white">
+<section class=" bg-white">
     <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold mb-10 text-center">Featured Wines</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -437,7 +436,7 @@
             @endif
         </div>
     </div>
-    <div class="flex justify-center mt-10">
+    <div class="flex justify-center my-10">
         {{ $wines->links('vendor.pagination.custom') }}
     </div>
     @if(Session::has('error'))
@@ -482,21 +481,22 @@
     @endif
 </section>
 <section>
-    <div class="font-mono container" id="contact">
+    <div class="font-['laila'] container mx-auto relative" id="contact">
         <!-- img -->
         <img src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.15752-9/410203617_739718257589056_6776045944098537520_n.png?_nc_cat=107&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=k4fiv-uscUAAX_VWXCG&_nc_ht=scontent.fsgn5-10.fna&oh=03_AdRyQezCmJJDsvYTI6ZIhmpZqz1X5M4I8MDp40ROn2uvXQ&oe=65AE635D"
-             alt="" srcset="" class="">
+             alt="" srcset="" class="" style="width: 110rem">
         <!-- content -->
         <div
-            class="contact-item container mx-auto text-center font-mono font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3">
+            class="lg:top-52 lg:left-32 min-[300px]:top-8 min-[300px]:left-1 md:top-28 md:left-14 container mx-auto text-center font-mono font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 absolute ">
             <div>
                 <p class="text-white font-bold text-3xl ">Subscribe Now!</p>
             </div>
             <div class="d-flex">
-                <p class="email-contact"><input type="text" placeholder="Enter your email ">
+                <p class="email-contact">
+                    <input type="text" placeholder="Enter your email ">
                 </p>
             </div>
-            <div class="btn-contact">
+            <div class="btn-contact min-[300px]:hidden">
                 <button><svg class="h-8 w-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" />
@@ -507,11 +507,11 @@
             </div>
         </div>
         <div>
-            <h1 class="text-center text-3xl">Latest Form Our Blog</h1>
-            <div class="mx-auto text-center font-mono font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3">
+            <h1 class="text-center text-3xl mt-2">Latest Form Our Blog</h1>
+            <div class="mx-auto text-center font-mono font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 my-5 ms-10">
                 <!-- item 1 -->
                 <div
-                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-3">
                     <a href="#">
                         <img class="rounded-t-lg"
                              src="https://templatebundle.net/wp/moto/netw5/luxury-wine/wp-content/uploads/sites/8/2019/04/lw_blog3-570x370-370x240.jpg"
@@ -537,7 +537,7 @@
                 </div>
                 <!-- item 2 -->
                 <div
-                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-2">
                     <a href="#">
                         <img class="rounded-t-lg"
                              src="https://templatebundle.net/wp/moto/netw5/luxury-wine/wp-content/uploads/sites/8/2019/04/lw_blog1-570x370-370x240.jpg"
@@ -563,7 +563,7 @@
                 </div>
                 <!-- item 3 -->
                 <div
-                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-3">
                     <a href="#">
                         <img class="rounded-t-lg"
                              src="https://templatebundle.net/wp/moto/netw5/luxury-wine/wp-content/uploads/sites/8/2019/04/lw_blog4-570x370-370x240.jpg"
@@ -594,7 +594,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer-1 py-8 sm:py-12 font-mono" style="margin-top: 1000px;" id="footer_main">
+<footer class="footer-1 py-8 sm:py-12 font-mono" style="" id="footer_main">
     <div class="container mx-auto px-4">
         <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
