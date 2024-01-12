@@ -104,38 +104,49 @@ class WineController extends Controller
     }
 
     public function handleCheckout(Request $request)
-    {
-        $cart = session()->get('cart', []);
+{
+    $cart = session()->get('cart', []);
+    $total = 0;
+    foreach ($cart as $id => $details) {
+        $total += $details['price'] * $details['quantity'];
 
-        $total = 0;
-        foreach ($cart as $id => $details) {
-            $total += $details['price'] * $details['quantity'];
-
-            // Check if the wine exists in the wines table
-            $wine = Wine::find($id);
-            if (!$wine) {
-                return redirect()->back()->with('error', 'Wine not found in the database');
-            }
+        $wine = Wine::find($id);
+        if (!$wine) {
+            return redirect()->back()->with('error', 'Wine not found in the database');
         }
-
-        $order = new Order();
-        $order->user_id = Auth::id();
-        $order->total = $total;
-        $order->save();
-
-        foreach ($cart as $id => $details) {
-            $order->wine()->create([
-                'wines_id' => $id,
-                'name' => $details['name'],
-                'quantity' => $details['quantity'],
-                'price' => $details['price'],
-            ]);
-        }
-
-        session()->forget('cart');
-
-        return redirect()->route('order.success', $order->id);
     }
+    $data = $request->validate([
+        'name' => 'required',
+        'address' => 'required',
+        'email' => 'required',
+        'zip' => 'required',
+        'phone' => 'required',
+    ]);
+
+    $order = new Order();
+    $order->user_id = Auth::id();
+    $order->total = $total;
+    $order->wine_name = $wine->name;
+    $order->name = $data['name']; // Add user's name to the order
+    $order->address = $data['address']; // Add user's address to the order
+    $order->email = $data['email']; // Add user's email to the order
+    $order->zip = $data['zip']; // Add user's zip code to the order
+    $order->phone = $data['phone']; // Add user's phone number to the order
+    $order->save();
+
+    foreach ($cart as $id => $details) {
+        $order->wine()->create([
+            'wines_id' => $id,
+            'wine_name' => $details['name'],
+            'quantity' => $details['quantity'],
+            'price' => $details['price'],
+        ]);
+    }
+
+    session()->forget('cart');
+
+    return redirect()->route('order.success', $order->id);
+}
 
     public function orderSuccess()
     {

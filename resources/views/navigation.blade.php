@@ -62,6 +62,9 @@
                     @auth
                         <li><a href="">Hi, {{Auth::user()->name}}</a></li>
                     @endauth
+                    @if(Auth::user()->role == 'admin')
+                        <li><a href="{{route('admin')}}">Admin Dashboard</a></li>
+                    @endif
                     <li>
                         <a class="justify-between">
                             Profile
@@ -197,10 +200,14 @@
             </svg>
         </button>
         <form action="{{route('search')}}">
-                    @csrf
-                    <input type="text" name="query" id="search" placeholder="Search..." class="border focus:outline-none focus:ring focus:ring-indigo-500 rounded-full py-2 px-3 w-full">
-                    <button type="submit" class="float-right mt-3 rounded-full bg-[#b5a46d] transition-all duration-300 hover:bg-slate-400 p-3 hover:text-white">Search</button>
-                </form>
+            @csrf
+            <input type="text" name="query" id="search" placeholder="Search..."
+                   class="border focus:outline-none focus:ring focus:ring-indigo-500 rounded-full py-2 px-3 w-full">
+            <button type="submit"
+                    class="float-right mt-3 rounded-full bg-[#b5a46d] transition-all duration-300 hover:bg-slate-400 p-3 hover:text-white">
+                Search
+            </button>
+        </form>
     </div>
 </section>
 <script>
@@ -214,6 +221,7 @@
             searchBar.style.transform = "translateY(100%)";
         }
     }
+
     searchButton.addEventListener('click', toggleSearchBar);
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');

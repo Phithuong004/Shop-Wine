@@ -11,6 +11,7 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'wine_id',
+        'wines_name',
         'name',
         'quantity',
         'total',
