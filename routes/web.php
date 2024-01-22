@@ -53,14 +53,25 @@ Route::get('success-form', function () {
 })->name('success-form');
 
 Route::get('/search', [WineController::class, 'search'])->name('search');
-
+Route::get('/store', [WineController::class, 'filter'])->name('store');
 Route::get('/products/{id}', [WineController::class, 'detailsProduct',])->name('details');
 Route::get('/test', [WineController::class, 'countries'])->name('test');
 Route::get('/country/{country}', [App\Http\Controllers\WineController::class, 'showByCountry'])->name('country.show');
 Route::get('/checkout', [WineController::class, 'showCheckout'])->name('checkout');
 Route::post('/checkout', [WineController::class, 'handleCheckout'])->name('checkout.handle');
 Route::get('order/success/{id}', [WineController::class, 'orderSuccess'])->name('order.success');
-
+Route::get('/ourstory', function (){
+    return view('ourstory');
+})->name('ourstory');
+Route::get('/about', function (){
+    return view('about');
+})->name('about');
+Route::get('contact', function (){
+    return view('contact');
+})->name('contact');
+Route::get('/profile', function (){
+    return view('profile');
+})->name('profile')->middleware('auth');
 Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
     Route::get('/users', [App\Http\Controllers\AdminController::class, 'showUsers'])->name('admin.users');

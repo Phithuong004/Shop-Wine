@@ -66,7 +66,7 @@
                         <li><a href="{{route('admin')}}">Admin Dashboard</a></li>
                     @endif
                     <li>
-                        <a class="justify-between">
+                        <a href="{{route('profile')}}" class="justify-between">
                             Profile
                             <span class="badge">New</span>
                         </a>
@@ -114,16 +114,16 @@
                 <a href="{{route('home')}}">Home</a>
             </li>
             <li class="hover:text-[#b5a46d] transition-all duration-300">
-                <a href="">Our Story</a>
+                <a href="{{route('ourstory')}}">Our Story</a>
             </li>
             <li class="">
                 <p class="text-2xl">Royal Terroir</p>
             </li>
             <li class="hover:text-[#b5a46d] transition-all duration-300">
-                <a href="">About</a>
+                <a href="{{route('about')}}">About</a>
             </li>
             <li class="hover:text-[#b5a46d] transition-all duration-300">
-                <a>Contact</a>
+                <a href="{{route('contact')}}">Contact</a>
             </li>
         </ul>
     </div>

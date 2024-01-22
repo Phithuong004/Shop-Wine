@@ -85,6 +85,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
+        session()->forget('cart');
         return redirect('/login');
     }
     public function index() {

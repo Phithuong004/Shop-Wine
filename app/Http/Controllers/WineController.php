@@ -16,6 +16,36 @@ class WineController extends Controller
         return view('home', compact('wines'));
     }
 
+    public function store (Request $request) {
+        $orderedWineIds = Order::pluck('name');
+        $wines = Wine::whereNotIn('name', $orderedWineIds)->paginate(8);
+        return view('store', compact('wines'));
+    }
+
+    public function filter (Request $request) {
+            $minPrice = $request->query('min_price');
+            $maxPrice = $request->query('max_price');
+            $sortPrice = $request->query('sort_price');
+
+            $query = Wine::query();
+
+            if($minPrice !== null) {
+                $query->where('price', '>=', $minPrice);
+            }
+
+            if($maxPrice !== null) {
+                $query->where('price', '<=', $maxPrice);
+            }
+
+            if($sortPrice !== null) {
+                $query->orderBy('price', $sortPrice);
+            }
+
+            $wines = $query->paginate(8);
+
+            return view('store', compact('wines'));
+        }
+
     public function wineCart()
     {
         return view('cart');

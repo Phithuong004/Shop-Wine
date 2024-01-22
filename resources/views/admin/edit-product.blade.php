@@ -17,7 +17,7 @@
         </div>
         <ul class="flex space-x-4">
             <li><a href="{{ route('admin.products') }}" class="hover:text-gray-300">Manage Products</a></li>
-            <li><a href="{{ route('admin.orders ') }}" class="hover:text-gray-300">Manage Orders</a></li>
+            <li><a href="{{ route('admin.orders') }}" class="hover:text-gray-300">Manage Orders</a></li>
             <li><a href="{{ route('admin.users') }}" class="hover:text-gray-300">Manage Users</a></li>
         </ul>
     </div>

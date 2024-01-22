@@ -90,14 +90,14 @@
 
             <div class="carousel-item ">
                 <img
-                    src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/403402162_1780640389099953_1472303949310716204_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=y1PGr8jH7UoAX-6euaP&_nc_ht=scontent.fsgn5-5.fna&oh=03_AdSdfdPA4Bw-K9DaYeG0vfikxxbyMu3Y-lrmR4tnStFs6g&oe=65A53C6E"
+                    src="https://img.freepik.com/free-photo/top-view-delicious-organic-wine-grapes_23-2148722561.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705363200&semt=ais"
                     alt="Wine 1" class="w-full h-full object-cover object-center">
 
             </div>
             <!-- Item 2 -->
             <div class="carousel-item">
                 <img
-                    src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.15752-9/385559678_6895473820546134_8535414984234801751_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=QzVm2p0LergAX8T5nw5&_nc_ht=scontent.fsgn5-15.fna&oh=03_AdTLt5rFrBZYwNUbSBofmwd4MBkx7df-zWPXFxpnEhDrYA&oe=65A545C0"
+                    src="https://t4.ftcdn.net/jpg/03/64/77/43/360_F_364774380_b7aSo8YimF6RCykzkHVH14vPm7doO4aq.jpg"
                     alt="Wine 2" class="w-full h-full object-cover object-center">
             </div>
         </div>
@@ -359,7 +359,10 @@
 <!-- Product Section -->
 <section class=" bg-white">
     <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold mb-10 text-center">Featured Wines</h2>
+        <div class="flex justify-between">
+            <h2 class="text-4xl font-bold mb-10">Featured Wines</h2>
+            <a href="{{route('store')}}" class="transition-all duration-300 ease-in-out  hover:text-blue-500">View All</a>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach ($wines as $wine)
                 <div
@@ -436,9 +439,6 @@
             @endif
         </div>
     </div>
-    <div class="flex justify-center my-10">
-        {{ $wines->links('vendor.pagination.custom') }}
-    </div>
     @if(Session::has('error'))
         <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title"
              role="dialog" aria-modal="true">
@@ -480,7 +480,7 @@
         </div>
     @endif
 </section>
-<section>
+<section class="mt-10">
     <div class="font-['laila'] container mx-auto relative" id="contact">
         <!-- img -->
         <img src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.15752-9/410203617_739718257589056_6776045944098537520_n.png?_nc_cat=107&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=k4fiv-uscUAAX_VWXCG&_nc_ht=scontent.fsgn5-10.fna&oh=03_AdRyQezCmJJDsvYTI6ZIhmpZqz1X5M4I8MDp40ROn2uvXQ&oe=65AE635D"
@@ -508,7 +508,7 @@
         </div>
         <div>
             <h1 class="text-center text-3xl mt-2">Latest Form Our Blog</h1>
-            <div class="mx-auto text-center font-mono font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 my-5 ms-10">
+            <div class="mx-auto text-center font-['laila'] font-bold grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 my-5 ms-10">
                 <!-- item 1 -->
                 <div
                     class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-3">
@@ -594,7 +594,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer-1 py-8 sm:py-12 font-mono" style="" id="footer_main">
+<footer class="footer-1 py-8 sm:py-12 font-['laila']" style="" id="footer_main">
     <div class="container mx-auto px-4">
         <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
