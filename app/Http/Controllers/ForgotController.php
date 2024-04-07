@@ -15,7 +15,8 @@ class ForgotController extends Controller
     public function forgotPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email|exis
+            ts:users',
         ],
         [
             'email.required' => 'This email is not exists in users table',
